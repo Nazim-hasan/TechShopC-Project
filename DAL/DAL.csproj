@@ -51,6 +51,7 @@
     <Compile Include="Admin.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
+    <Compile Include="AdminRepo.cs" />
     <Compile Include="Bonu.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
@@ -61,6 +62,7 @@
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="EmployeeRepo.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ManagerRepo.cs" />
     <Compile Include="Customer.cs">

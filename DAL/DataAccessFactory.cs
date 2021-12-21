@@ -21,5 +21,15 @@ namespace DAL
         {
             return new ManagerRepo(db);
         }
+        public static IRepository<Employee, int> EmployeeDataAccess()
+        {
+
+            return new EmployeeRepo(db);
+        }
+        public static IRepository<Admin, int> AdminDataAccess()
+        {
+
+            return new AdminRepo(db);
+        }
     }
 }

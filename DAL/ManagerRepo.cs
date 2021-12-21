@@ -12,6 +12,7 @@ namespace DAL
         public ManagerRepo(Entities db) 
         {
             this.db = db;
+            db = new Entities();
         }
 
         public void Add(Manager e)

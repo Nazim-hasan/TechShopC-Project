@@ -28,6 +28,18 @@ namespace BLL
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<ManagerModel, Manager>())).Map<Manager>(man);
             DataAccessFactory.ManagerDataAccess().Add(data);
         }
+        public static void Edit(ManagerModel man)
+        {
+            var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<ManagerModel, Manager>())).Map<Manager>(man);
+            DataAccessFactory.ManagerDataAccess().Edit(data);
+        }
+        public static ManagerModel Get(int id)
+        {
+            var config = new MapperConfiguration(cfg => cfg.CreateMap<Manager, ManagerModel>());
+            var mapper = new Mapper(config);
+            var data = mapper.Map<ManagerModel>(DataAccessFactory.ManagerDataAccess().Get(id));
+            return data;
+        }
         //public static void GetAllWithBonus() {}
     }
 }
