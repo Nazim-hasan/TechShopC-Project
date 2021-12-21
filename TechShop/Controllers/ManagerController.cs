@@ -1,6 +1,5 @@
 ﻿using BEL;
 using BLL;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +51,7 @@ namespace TechShop.Controllers
         {
             return ManagerSevice.Get(id);
         }
+
 
 
     }

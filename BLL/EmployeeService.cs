@@ -31,6 +31,10 @@ namespace BLL
         {
             DataAccessFactory.EmployeeDataAccess().Delete(id);
         }
+        public static void UpdateStatus(int id)
+        {
+
+        }
 
         public static void Add(EmployeeModel e)
         {
@@ -49,5 +53,7 @@ namespace BLL
             var data = mapper.Map<EmployeeModel>(DataAccessFactory.EmployeeDataAccess().Get(id));
             return data;
         }
+
+        
     }
 }

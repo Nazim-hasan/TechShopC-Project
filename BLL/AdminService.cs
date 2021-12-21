@@ -17,8 +17,6 @@ namespace BLL
             var mapper = new Mapper(config);
             var data = mapper.Map<List<AdminModel>>(DataAccessFactory.AdminDataAccess().GetAll());
             return data;
-
-
         }
         
         public static void Delete(int id)

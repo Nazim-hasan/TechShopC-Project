@@ -29,6 +29,7 @@ namespace DAL
         public int MBasicSalary { get; set; }
         public int MFastiveBonus { get; set; }
         public int MPerformBonus { get; set; }
+        public string MStatus { get; set; }
     
         public virtual ICollection<Product> Products { get; set; }
     }

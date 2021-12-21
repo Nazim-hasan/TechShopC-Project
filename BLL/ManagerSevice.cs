@@ -23,6 +23,10 @@ namespace BLL
         public static void Delete(int id) {
             DataAccessFactory.ManagerDataAccess().Delete(id);
         }
+        public static void UpdateStatus(int id)
+        {
+
+        }
         public static void Add(ManagerModel man)
         {
             var data = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<ManagerModel, Manager>())).Map<Manager>(man);

@@ -57,5 +57,13 @@ namespace TechShop.Controllers
         {
             return EmployeeService.Get(id);
         }
+
+
+        [Route("api/Employee/updateStatus/{id}")]
+        [HttpPost]
+        public void UpdateStatus(int id)
+        {
+            EmployeeService.UpdateStatus(id);
+        }
     }
 }

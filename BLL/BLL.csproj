@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminService.cs" />
+    <Compile Include="BonusService.cs" />
     <Compile Include="EmployeeService.cs" />
+    <Compile Include="ExpenseService.cs" />
     <Compile Include="ManagerSevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

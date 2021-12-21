@@ -17,15 +17,11 @@
           <Property Name="AdminPhone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="AdminPicture" Type="image" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Bonus">
           <Key>
             <PropertyRef Name="BonusId" />
-            <PropertyRef Name="BonusType" />
-            <PropertyRef Name="BonusAmount" />
           </Key>
-          <Property Name="BonusId" Type="int" Nullable="false" />
+          <Property Name="BonusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BonusType" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="BonusAmount" Type="int" Nullable="false" />
         </EntityType>
@@ -45,6 +41,16 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Complain">
+          <Key>
+            <PropertyRef Name="ComplainID" />
+          </Key>
+          <Property Name="ComplainID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComplainSubject" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComplainDetails" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CId" />
@@ -56,7 +62,21 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           <Property Name="CAddress" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CPhone" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="CPicture" Type="image" />
-          <Property Name="VouId" Type="int" Nullable="false" />
+          <Property Name="VouId" Type="int" />
+        </EntityType>
+        <EntityType Name="Delivaryman">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DPassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DPhone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DStatus" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DOrderid" Type="int" Nullable="false" />
+          <Property Name="DSalay" Type="int" Nullable="false" />
+          <Property Name="DSchedule" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -73,6 +93,17 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           <Property Name="EFastiveBonus" Type="int" Nullable="false" />
           <Property Name="EPerformBonus" Type="int" Nullable="false" />
           <Property Name="ESchedule" Type="varchar" MaxLength="50" />
+          <Property Name="EStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Expence">
+          <Key>
+            <PropertyRef Name="ExpID" />
+          </Key>
+          <Property Name="ExpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalaryExp" Type="int" Nullable="false" />
+          <Property Name="UtilityExp" Type="int" Nullable="false" />
+          <Property Name="ElectricityExp" Type="int" Nullable="false" />
+          <Property Name="RentExp" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -88,6 +119,7 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           <Property Name="MBasicSalary" Type="int" Nullable="false" />
           <Property Name="MFastiveBonus" Type="int" Nullable="false" />
           <Property Name="MPerformBonus" Type="int" Nullable="false" />
+          <Property Name="MStatus" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -118,7 +150,7 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           <Property Name="PId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="PBasicPrice" Type="int" Nullable="false" />
-          <Property Name="PCategoryId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
           <Property Name="PStock" Type="int" Nullable="false" />
           <Property Name="PDiscount" Type="int" Nullable="false" />
           <Property Name="PDescription" Type="varchar" MaxLength="50" Nullable="false" />
@@ -135,6 +167,16 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           </Key>
           <Property Name="ShopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ShopName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Voucher">
           <Key>
@@ -157,7 +199,7 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomToVoucher">
-          <End Role="Voucher" Type="Self.Voucher" Multiplicity="1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Voucher">
@@ -260,29 +302,27 @@ warning 6002: The table/view 'techshop-DB.dbo.Bonus' does not have a primary key
               <PropertyRef Name="CategoryId" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="PCategoryId" />
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bonus" EntityType="Self.Bonus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Complain" EntityType="Self.Complain" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Delivaryman" EntityType="Self.Delivaryman" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expence" EntityType="Self.Expence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Bonus" EntityType="Self.Bonus" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-[Bonus].[BonusId] AS [BonusId], 
-[Bonus].[BonusType] AS [BonusType], 
-[Bonus].[BonusAmount] AS [BonusAmount]
-FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="CustomerCart" Association="Self.CustomerCart">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Cart" EntitySet="Cart" />
@@ -341,6 +381,14 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="AdminPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AdminPicture" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Bonu">
+          <Key>
+            <PropertyRef Name="BonusId" />
+          </Key>
+          <Property Name="BonusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BonusType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BonusAmount" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="CartId" />
@@ -360,6 +408,16 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.ProductToCategory" FromRole="Category" ToRole="Product" />
         </EntityType>
+        <EntityType Name="Complain">
+          <Key>
+            <PropertyRef Name="ComplainID" />
+          </Key>
+          <Property Name="ComplainID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ComplainSubject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ComplainDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CId" />
@@ -371,11 +429,25 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="CAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CPicture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="VouId" Type="Int32" Nullable="false" />
+          <Property Name="VouId" Type="Int32" />
           <NavigationProperty Name="Carts" Relationship="Self.CustomerCart" FromRole="Customer" ToRole="Cart" />
           <NavigationProperty Name="Voucher" Relationship="Self.CustomToVoucher" FromRole="Customer" ToRole="Voucher" />
           <NavigationProperty Name="OrderDetails" Relationship="Self.OrderDetailsOfCustomer" FromRole="Customer" ToRole="OrderDetails" />
           <NavigationProperty Name="Orders" Relationship="Self.OrderedByCustomer" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Delivaryman">
+          <Key>
+            <PropertyRef Name="Did" />
+          </Key>
+          <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOrderid" Type="Int32" Nullable="false" />
+          <Property Name="DSalay" Type="Int32" Nullable="false" />
+          <Property Name="DSchedule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -392,7 +464,18 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="EFastiveBonus" Type="Int32" Nullable="false" />
           <Property Name="EPerformBonus" Type="Int32" Nullable="false" />
           <Property Name="ESchedule" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Orders" Relationship="Self.OrderConfirmedByEmp" FromRole="Employee" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Expence">
+          <Key>
+            <PropertyRef Name="ExpID" />
+          </Key>
+          <Property Name="ExpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalaryExp" Type="Int32" Nullable="false" />
+          <Property Name="UtilityExp" Type="Int32" Nullable="false" />
+          <Property Name="ElectricityExp" Type="Int32" Nullable="false" />
+          <Property Name="RentExp" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Manager">
           <Key>
@@ -408,6 +491,7 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="MBasicSalary" Type="Int32" Nullable="false" />
           <Property Name="MFastiveBonus" Type="Int32" Nullable="false" />
           <Property Name="MPerformBonus" Type="Int32" Nullable="false" />
+          <Property Name="MStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Products" Relationship="Self.ProductAddedByManager" FromRole="Manager" ToRole="Product" />
         </EntityType>
         <EntityType Name="Order">
@@ -445,7 +529,7 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="PId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PBasicPrice" Type="Int32" Nullable="false" />
-          <Property Name="PCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
           <Property Name="PStock" Type="Int32" Nullable="false" />
           <Property Name="PDiscount" Type="Int32" Nullable="false" />
           <Property Name="PDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -467,6 +551,16 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="ShopId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Voucher">
           <Key>
             <PropertyRef Name="VouId" />
@@ -475,16 +569,6 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
           <Property Name="VouCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="VouDiscount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customers" Relationship="Self.CustomToVoucher" FromRole="Voucher" ToRole="Customer" />
-        </EntityType>
-        <EntityType Name="Bonu">
-          <Key>
-            <PropertyRef Name="BonusId" />
-            <PropertyRef Name="BonusType" />
-            <PropertyRef Name="BonusAmount" />
-          </Key>
-          <Property Name="BonusId" Type="Int32" Nullable="false" />
-          <Property Name="BonusType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BonusAmount" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="CustomerCart">
           <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
@@ -518,12 +602,12 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
               <PropertyRef Name="CategoryId" />
             </Principal>
             <Dependent Role="Product">
-              <PropertyRef Name="PCategoryId" />
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="CustomToVoucher">
-          <End Role="Voucher" Type="Self.Voucher" Multiplicity="1" />
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Voucher">
@@ -608,17 +692,21 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Bonus" EntityType="Self.Bonu" />
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Complains" EntityType="Self.Complain" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Delivarymen" EntityType="Self.Delivaryman" />
           <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Expences" EntityType="Self.Expence" />
           <EntitySet Name="Managers" EntityType="Self.Manager" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Shops" EntityType="Self.Shop" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
-          <EntitySet Name="Bonus" EntityType="Self.Bonu" />
           <AssociationSet Name="CustomerCart" Association="Self.CustomerCart">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Cart" EntitySet="Carts" />
@@ -679,6 +767,15 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Bonus">
+            <EntityTypeMapping TypeName="Model.Bonu">
+              <MappingFragment StoreEntitySet="Bonus">
+                <ScalarProperty Name="BonusId" ColumnName="BonusId" />
+                <ScalarProperty Name="BonusType" ColumnName="BonusType" />
+                <ScalarProperty Name="BonusAmount" ColumnName="BonusAmount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="Model.Cart">
               <MappingFragment StoreEntitySet="Cart">
@@ -697,6 +794,17 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Complains">
+            <EntityTypeMapping TypeName="Model.Complain">
+              <MappingFragment StoreEntitySet="Complain">
+                <ScalarProperty Name="ComplainID" ColumnName="ComplainID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="ComplainSubject" ColumnName="ComplainSubject" />
+                <ScalarProperty Name="ComplainDetails" ColumnName="ComplainDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="Model.Customer">
               <MappingFragment StoreEntitySet="Customer">
@@ -708,6 +816,21 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
                 <ScalarProperty Name="CPhone" ColumnName="CPhone" />
                 <ScalarProperty Name="CPicture" ColumnName="CPicture" />
                 <ScalarProperty Name="VouId" ColumnName="VouId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Delivarymen">
+            <EntityTypeMapping TypeName="Model.Delivaryman">
+              <MappingFragment StoreEntitySet="Delivaryman">
+                <ScalarProperty Name="Did" ColumnName="Did" />
+                <ScalarProperty Name="DName" ColumnName="DName" />
+                <ScalarProperty Name="DEmail" ColumnName="DEmail" />
+                <ScalarProperty Name="DPassword" ColumnName="DPassword" />
+                <ScalarProperty Name="DPhone" ColumnName="DPhone" />
+                <ScalarProperty Name="DStatus" ColumnName="DStatus" />
+                <ScalarProperty Name="DOrderid" ColumnName="DOrderid" />
+                <ScalarProperty Name="DSalay" ColumnName="DSalay" />
+                <ScalarProperty Name="DSchedule" ColumnName="DSchedule" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -725,6 +848,18 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
                 <ScalarProperty Name="EFastiveBonus" ColumnName="EFastiveBonus" />
                 <ScalarProperty Name="EPerformBonus" ColumnName="EPerformBonus" />
                 <ScalarProperty Name="ESchedule" ColumnName="ESchedule" />
+                <ScalarProperty Name="EStatus" ColumnName="EStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expences">
+            <EntityTypeMapping TypeName="Model.Expence">
+              <MappingFragment StoreEntitySet="Expence">
+                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
+                <ScalarProperty Name="SalaryExp" ColumnName="SalaryExp" />
+                <ScalarProperty Name="UtilityExp" ColumnName="UtilityExp" />
+                <ScalarProperty Name="ElectricityExp" ColumnName="ElectricityExp" />
+                <ScalarProperty Name="RentExp" ColumnName="RentExp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -741,6 +876,7 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
                 <ScalarProperty Name="MBasicSalary" ColumnName="MBasicSalary" />
                 <ScalarProperty Name="MFastiveBonus" ColumnName="MFastiveBonus" />
                 <ScalarProperty Name="MPerformBonus" ColumnName="MPerformBonus" />
+                <ScalarProperty Name="MStatus" ColumnName="MStatus" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -774,7 +910,7 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
                 <ScalarProperty Name="PId" ColumnName="PId" />
                 <ScalarProperty Name="PName" ColumnName="PName" />
                 <ScalarProperty Name="PBasicPrice" ColumnName="PBasicPrice" />
-                <ScalarProperty Name="PCategoryId" ColumnName="PCategoryId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="PStock" ColumnName="PStock" />
                 <ScalarProperty Name="PDiscount" ColumnName="PDiscount" />
                 <ScalarProperty Name="PDescription" ColumnName="PDescription" />
@@ -795,21 +931,23 @@ FROM [dbo].[Bonus] AS [Bonus]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Vouchers">
             <EntityTypeMapping TypeName="Model.Voucher">
               <MappingFragment StoreEntitySet="Voucher">
                 <ScalarProperty Name="VouId" ColumnName="VouId" />
                 <ScalarProperty Name="VouCode" ColumnName="VouCode" />
                 <ScalarProperty Name="VouDiscount" ColumnName="VouDiscount" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Bonus">
-            <EntityTypeMapping TypeName="Model.Bonu">
-              <MappingFragment StoreEntitySet="Bonus">
-                <ScalarProperty Name="BonusId" ColumnName="BonusId" />
-                <ScalarProperty Name="BonusType" ColumnName="BonusType" />
-                <ScalarProperty Name="BonusAmount" ColumnName="BonusAmount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

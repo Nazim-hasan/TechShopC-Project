@@ -28,8 +28,15 @@ namespace DAL
         }
         public static IRepository<Admin, int> AdminDataAccess()
         {
-
             return new AdminRepo(db);
+        }
+        public static IRepository<Bonu, int> BonusDataAccess()
+        {
+            return new BonusRepo(db);
+        }
+        public static IRepository<Expence, int> ExpenseDataAccess()
+        {
+            return new ExpenseRepo(db);
         }
     }
 }

@@ -18,5 +18,7 @@ namespace BEL
         public int MBasicSalary { get; set; }
         public int MFastiveBonus { get; set; }
         public int MPerformBonus { get; set; }
+
+        public string MStatus { get; set; }
     }
 }

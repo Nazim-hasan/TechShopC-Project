@@ -19,5 +19,6 @@ namespace BEL
         public int EFastiveBonus { get; set; }
         public int EPerformBonus { get; set; }
         public string ESchedule { get; set; }
+        public string EStatus { get; set; }
     }
 }

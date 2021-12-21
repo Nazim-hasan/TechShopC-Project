@@ -55,22 +55,32 @@
     <Compile Include="Bonu.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
+    <Compile Include="BonusRepo.cs" />
     <Compile Include="Cart.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
     <Compile Include="Category.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessFactory.cs" />
-    <Compile Include="EmployeeRepo.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="ManagerRepo.cs" />
+    <Compile Include="Complain.cs">
+      <DependentUpon>Manager.tt</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs">
+      <DependentUpon>Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessFactory.cs" />
+    <Compile Include="Delivaryman.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
     <Compile Include="Employee.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeRepo.cs" />
+    <Compile Include="Expence.cs">
+      <DependentUpon>Manager.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseRepo.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Manager.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +99,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
+    <Compile Include="ManagerRepo.cs" />
     <Compile Include="Order.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
@@ -102,37 +113,38 @@
     <Compile Include="Shop.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Manager.tt</DependentUpon>
+    </Compile>
     <Compile Include="Voucher.cs">
       <DependentUpon>Manager.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Manager.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Manager.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Manager.edmx.diagram">
       <DependentUpon>Manager.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Manager.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Manager.Context.cs</LastGenOutput>
       <DependentUpon>Manager.edmx</DependentUpon>
+      <LastGenOutput>Manager.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Manager.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Manager.edmx</DependentUpon>
       <LastGenOutput>Manager1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
